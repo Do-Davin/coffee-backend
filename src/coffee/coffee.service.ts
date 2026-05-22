@@ -1,24 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-
-type Coffee = {
-  id: number;
-  name: string;
-  price: number;
-};
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class CoffeeService {
-  private coffees: Coffee[] = [
-    { id: 1, name: 'Ice Latte', price: 2.43 },
-    { id: 2, name: 'Green Tea', price: 2.5 },
-  ];
-
+  constructor(private readonly prisma: PrismaService) {}
   findAll() {
-    return this.coffees;
+    return this.prisma.coffee.findMany({
+      orderBy: { id: 'asc' },
+    });
   }
 
-  findOne(id: number) {
-    const coffee = this.coffees.find((coffee) => coffee.id === id);
+  async findOne(id: number) {
+    const coffee = await this.prisma.coffee.findUnique({
+      where: { id },
+    });
 
     if (!coffee) {
       throw new NotFoundException('Coffee not found');
@@ -27,29 +22,24 @@ export class CoffeeService {
     return coffee;
   }
 
-  create(data: Omit<Coffee, 'id'>) {
-    const coffee: Coffee = {
-      id: Date.now(),
-      ...data,
-    };
-
-    this.coffees.push(coffee);
-    return coffee;
+  create(data: { name: string; price: number }) {
+    return this.prisma.coffee.create({ data });
   }
 
-  update(id: number, data: Partial<Omit<Coffee, 'id'>>) {
-    const coffee = this.findOne(id);
+  async update(id: number, data: { name?: string; price?: number }) {
+    await this.findOne(id);
 
-    Object.assign(coffee, data);
-
-    return coffee;
+    return this.prisma.coffee.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    const coffee = this.findOne(id);
+  async remove(id: number) {
+    await this.findOne(id);
 
-    this.coffees = this.coffees.filter((coffee) => coffee.id === id);
-
-    return coffee;
+    return this.prisma.coffee.delete({
+      where: { id },
+    });
   }
 }
