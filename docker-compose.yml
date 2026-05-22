@@ -12,5 +12,16 @@ services:
     volumes:
       - coffee_postgres_data:/var/lib/postgresql/data
 
+  backend:
+    build: .
+    container_name: coffee_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://coffee_user:coffee_password@postgres:5432/coffee_db?schema=public"
+    depends_on:
+      - postgres
+
 volumes:
   coffee_postgres_data:
