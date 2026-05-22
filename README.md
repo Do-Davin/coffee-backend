@@ -31,6 +31,34 @@
 $ npm install
 ```
 
+## Docker commands
+
+Local development uses PostgreSQL on host port `5434` and the backend on host port `3000`.
+
+```bash
+# stop dev
+docker compose -f docker-compose.dev.yml down
+
+# start dev
+docker compose -f docker-compose.dev.yml up -d --build
+```
+
+Production local testing uses `.env.prod`, PostgreSQL inside the Docker network at `postgres:5432`, and the backend on host port `3001`.
+
+```bash
+# stop prod
+docker compose --env-file .env.prod -f docker-compose.prod.yml down
+
+# start prod
+docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --build
+
+# run prod migration
+docker compose --env-file .env.prod -f docker-compose.prod.yml run --rm backend npx prisma migrate deploy
+
+# test API
+curl http://localhost:3001/coffee
+```
+
 ## Compile and run the project
 
 ```bash
