@@ -7,9 +7,10 @@
 3. git-install-commands.md
 4. docker-install-commands.md
 5. firewall-commands.md
-6. docker-commands.md
-7. server-deployment-checklist.md
-8. server-update-checklist.md
+6. nginx-basic-commands.md
+7. docker-commands.md
+8. server-deployment-checklist.md
+9. server-update-checklist.md
 
 ## Main goal
 
