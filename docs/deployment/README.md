@@ -8,9 +8,10 @@
 4. docker-install-commands.md
 5. firewall-commands.md
 6. nginx-basic-commands.md
-7. docker-commands.md
-8. server-deployment-checklist.md
-9. server-update-checklist.md
+7. nginx-reverse-proxy-example.md
+8. docker-commands.md
+9. server-deployment-checklist.md
+10. server-update-checklist.md
 
 ## Main goal
 
