@@ -10,6 +10,8 @@ cd coffee-backend
 cp .env.prod.example .env.prod
 nano .env.prod
 
+Important: replace the example password before starting production containers.
+
 ## 3. Start production containers
 
 docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --build
