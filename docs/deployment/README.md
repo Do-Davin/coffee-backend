@@ -2,16 +2,18 @@
 
 ## Recommended order
 
-1. ssh-commands.md
-2. ubuntu-package-commands.md
-3. git-install-commands.md
-4. docker-install-commands.md
-5. firewall-commands.md
-6. nginx-basic-commands.md
-7. nginx-reverse-proxy-example.md
-8. docker-commands.md
-9. server-deployment-checklist.md
-10. server-update-checklist.md
+1. coffee-backend-deployment-quick-reference.md
+2. ssh-commands.md
+3. ubuntu-package-commands.md
+4. git-install-commands.md
+5. docker-install-commands.md
+6. firewall-commands.md
+7. nginx-basic-commands.md
+8. nginx-file-location.md
+9. nginx-reverse-proxy-example.md
+10. docker-commands.md
+11. server-deployment-checklist.md
+12. server-update-checklist.md
 
 ## Main goal
 
